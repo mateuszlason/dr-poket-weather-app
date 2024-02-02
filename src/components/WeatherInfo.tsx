@@ -4,7 +4,7 @@ import { WeatherChart } from './WeatherChart'
 //
 export const WeatherInfo = ({ weather }: { weather: Weather }) => {
   return (
-    <div className="min-h-[500px] grid lg:grid-cols-2 place-items-center gap-10 bg-sky-200 px-5 lg:px-10">
+    <div className="min-h-[500px] grid lg:grid-cols-2 place-items-center gap-x-10 bg-sky-200 px-5 lg:px-10">
       <div className="border border-gray-200 bg-white pb-6 lg:pb-10 px-5 lg:px-10 rounded-xl max-w-[460px] w-full my-10 shadow-lg">
         <div className="flex gap-5 items-center">
           <div className="grid place-items-center">
@@ -13,16 +13,26 @@ export const WeatherInfo = ({ weather }: { weather: Weather }) => {
               width={150}
               alt={weather.weather[0].main}
               src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+              loading="lazy"
+              className="hidden md:block"
+            />
+            <img
+              loading="lazy"
+              height={100}
+              width={100}
+              alt={weather.weather[0].main}
+              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+              className="md:hidden"
             />
           </div>
-          <div>
-            <h2 className="text-xl lg:text-2xl font-semibold">
-              {weather.weather[0].main}
+          <div className="my-5 lg:my-10">
+            <h2 className="text-2xl lg:text-3xl font-semibold text-sky-900 mb-1 md:mb-2">
+              {weather.name}, {weather.sys.country}
             </h2>
-            <h2 className="text-sky-900 font-bold text-2xl lg:text-3xl">
-              {Math.round(weather.main.temp)}°C
-            </h2>
-            <span className="text-sm sm:text-base lg:text-lg">
+            <h3 className="text-sky-900 font-semibold text-xl lg:text-2xl">
+              {weather.weather[0].main} {Math.round(weather.main.temp)}°C
+            </h3>
+            <span className="text-sm lg:text-base">
               (feels like {Math.round(weather.main.feels_like)}°C)
             </span>
           </div>
@@ -37,7 +47,7 @@ export const WeatherInfo = ({ weather }: { weather: Weather }) => {
             <svg
               style={{ transform: `rotate(${weather.wind.deg}deg)` }}
               height={18}
-              className="self-center ml-2 mr-1"
+              className="self-center ml-2 mr-1 lg:ml-3 lg:mr-2"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 384 512"
             >

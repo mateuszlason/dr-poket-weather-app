@@ -67,7 +67,7 @@ export const WeatherChart = ({ weather }: { weather: Weather }) => {
       // Would need to troubleshoot chart.js typings
       // @ts-expect-error: Unreachable code error
       options={options}
-      className="max-h-[480px] max-w-[480px]"
+      className="max-h-[480px] max-w-[480px] -mx-5 sm:mx-0"
       data={data}
     ></Radar>
   )
