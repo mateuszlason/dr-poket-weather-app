@@ -28,6 +28,9 @@ export const WeatherDashboard = () => {
   }
   return (
     <div className="bg-white rounded-xl overflow-hidden h-screen">
+      <h1 className="px-5 text-sky-900 font-semibold text-3xl lg:text-5xl text-center mt-10">
+        Dr Poket Weather App
+      </h1>
       <div className="gap-5 py-10 max-w-[460px] mx-auto grid items-stretch  px-5 lg:px-10">
         <SearchBox getWeather={getWeather} />
         <RecentSearches setWeather={setWeather} />

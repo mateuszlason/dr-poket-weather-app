@@ -110,14 +110,13 @@ export const SearchBox = ({ getWeather }: { getWeather: GetWeather }) => {
           type="search"
           id="search"
           className="transition rounded-md block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 bg-gray-50  focus:border-gray-500"
-          placeholder="Search"
+          placeholder="Search city"
           onBlur={() =>
             Array.isArray(suggestions) &&
             !suggestions.length &&
             setSuggestions(null)
           }
         />
-
         <Suggestions />
       </div>
     </div>

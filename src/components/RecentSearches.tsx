@@ -23,7 +23,7 @@ export const RecentSearches = ({ setWeather }: { setWeather: SetWeather }) => {
             className="grid place-items-center text-center cursor-pointer px-2.5 py-1.5 rounded text-white font-semibold bg-sky-600"
             key={`recent-weather-${idx}`}
           >
-            {weatherItem[1]!.name}
+            {weatherItem[1]!.name}, {weatherItem[1]!.sys.country}
           </li>
         ))}
       </ul>
