@@ -10,7 +10,7 @@ import {
 } from 'chart.js'
 
 import { Radar } from 'react-chartjs-2'
-import { normalizeData } from '../utils/normalizeData'
+import { normalizeNumberData } from '../utils/normalizeNumberData'
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip)
 
 export const WeatherChart = ({ weather }: { weather: Weather }) => {
@@ -20,12 +20,12 @@ export const WeatherChart = ({ weather }: { weather: Weather }) => {
       {
         // normalizing to 0-10 values
         data: [
-          normalizeData(weather.main.temp, -10, 40, 0, 10),
+          normalizeNumberData(weather.main.temp, -10, 40, 0, 10),
           // humidity value spans from 0 to 100
           weather.main.humidity / 10,
           // visibility is provided in meters up to 10000m
           // dividing by 1000 makes the number fit the desired threshold
-          normalizeData(weather.wind.speed, 0, 40, 0, 10),
+          normalizeNumberData(weather.wind.speed, 0, 40, 0, 10),
         ],
         backgroundColor: 'rgba(0, 100, 255, 0.3)',
         borderColor: 'rgba(0, 100, 255, 0.4)',
