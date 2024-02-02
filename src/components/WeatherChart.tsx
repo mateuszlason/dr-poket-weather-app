@@ -7,6 +7,7 @@ import {
   Filler,
   Tooltip,
   ChartOptions,
+  ChartData,
 } from 'chart.js'
 
 import { Radar } from 'react-chartjs-2'
@@ -14,7 +15,7 @@ import { normalizeNumberData } from '../utils/normalizeNumberData'
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip)
 
 export const WeatherChart = ({ weather }: { weather: Weather }) => {
-  const data = {
+  const data: ChartData<'radar'> = {
     labels: ['Temperature', 'Humidity', 'Wind Speed'],
     datasets: [
       {
@@ -34,7 +35,7 @@ export const WeatherChart = ({ weather }: { weather: Weather }) => {
     ],
   }
 
-  const options: ChartOptions = {
+  const options: ChartOptions<'radar'> = {
     scales: {
       r: {
         backgroundColor: 'white',
@@ -64,8 +65,6 @@ export const WeatherChart = ({ weather }: { weather: Weather }) => {
   }
   return (
     <Radar
-      // Would need to troubleshoot chart.js typings
-      // @ts-expect-error: Unreachable code error
       options={options}
       className="max-h-[480px] max-w-[480px] -mx-5 sm:mx-0"
       data={data}
