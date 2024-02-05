@@ -4,29 +4,20 @@ import { WeatherChart } from './WeatherChart'
 //
 export const WeatherInfo = ({ weather }: { weather: Weather }) => {
   return (
-    <div className="min-h-[500px] grid lg:grid-cols-2 place-items-center gap-x-10 bg-sky-200 px-5 lg:px-10">
-      <div className="border border-gray-200 bg-white pb-6 lg:pb-10 px-5 lg:px-10 rounded-xl max-w-[460px] w-full my-10 shadow-lg">
+    <div className="min-h-[500px] grid lg:grid-cols-2 place-items-center gap-x-10 bg-sky-200 px-5 lg:px-10 rounded-b-xl">
+      <div className="border border-gray-200 bg-white pb-6 sm:pb-10 px-5 sm:px-10 rounded-xl max-w-[460px] w-full my-10 shadow-lg">
         <div className="flex gap-5 items-center">
-          <div className="grid place-items-center">
-            <img
-              height={150}
-              width={150}
-              alt={weather.weather[0].main}
-              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
-              loading="lazy"
-              className="hidden md:block"
-            />
-            <img
-              loading="lazy"
-              height={100}
-              width={100}
-              alt={weather.weather[0].main}
-              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-              className="md:hidden"
-            />
-          </div>
+          <img
+            alt={weather.weather[0].main}
+            srcSet={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png 100w, https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png 200w`}
+            sizes="(max-width: 768px) 100px,
+         150px"
+            src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+            loading="lazy"
+            className="w-[100px] md:w-[150px]"
+          />
           <div className="my-5 lg:my-10">
-            <h2 className="text-2xl lg:text-3xl font-semibold text-sky-900 mb-1 md:mb-2">
+            <h2 className="text-2xl lg:text-3xl font-semibold text-sky-900 mb-1 sm:mb-2 break-words">
               {weather.name}, {weather.sys.country}
             </h2>
             <h3 className="text-sky-900 font-semibold text-xl lg:text-2xl">
@@ -38,7 +29,7 @@ export const WeatherInfo = ({ weather }: { weather: Weather }) => {
           </div>
         </div>
         <div className="h-[1px] bg-gray-300 mb-6 lg:mb-10"></div>
-        <ul className="grid md:grid-cols-2 gap-x-5 gap-y-1.5 items-center font-medium lg:text-lg">
+        <ul className="grid sm:grid-cols-2 gap-x-5 gap-y-1.5 items-center font-medium lg:text-lg">
           <li>Pressure: {weather.main.pressure}hPa</li>
           <li>Humidity: {weather.main.humidity}%</li>
           <li>Visibility: {weather.visibility / 1000}km</li>
