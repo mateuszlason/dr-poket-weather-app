@@ -3,6 +3,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Layout } from './layout/Layout'
 import { WeatherDashboard } from './components/WeatherDashboard'
 
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -15,6 +18,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ToastContainer />
       <Layout>
         <WeatherDashboard />
       </Layout>

@@ -5,6 +5,8 @@ import type { Suggestion } from '../types/WeatherApiResponses'
 import { formatOpenWeatherSuggestion } from '../utils/formatOpenWeatherSuggestion'
 import { fetchPlaceSuggestions } from '../api/fetchSuggestions'
 import { GetWeather } from './WeatherDashboard'
+import { getFetchErrorMessage } from '../utils/getFetchErrorMessage'
+import { toast } from 'react-toastify'
 
 export const SearchBox = ({ getWeather }: { getWeather: GetWeather }) => {
   const queryClient = useQueryClient()
@@ -24,7 +26,8 @@ export const SearchBox = ({ getWeather }: { getWeather: GetWeather }) => {
         setIsFetchingSuggestions(false)
         setSuggestions(suggestionsData)
       } catch (error) {
-        console.error(error)
+        toast.error(getFetchErrorMessage(error))
+        setIsFetchingSuggestions(false)
       }
     },
     [queryClient]
