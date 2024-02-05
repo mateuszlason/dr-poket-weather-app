@@ -1,5 +1,6 @@
 import { Suggestion } from '../types/WeatherApiResponses'
 import { formatOpenWeatherSuggestion } from '../utils/formatOpenWeatherSuggestion'
+import { handleOpenWeatherApiError } from '../utils/handleOpenWeatherApiError'
 
 export const fetchPlaceSuggestions = async (
   query: string
@@ -9,12 +10,13 @@ export const fetchPlaceSuggestions = async (
       import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY
     }`
   ).then(async (res) => {
-    const response: Suggestion[] | [] = await res.json()
-    if (!response.length) {
+    await handleOpenWeatherApiError(res)
+    const data: Suggestion[] | [] = await res.json()
+    if (!data.length) {
       return []
     }
     const uniqueCombinations = new Set<string>()
-    return response.filter((value) => {
+    return data.filter((value) => {
       const combinationKey = formatOpenWeatherSuggestion(value)
       if (!uniqueCombinations.has(combinationKey)) {
         uniqueCombinations.add(combinationKey)
